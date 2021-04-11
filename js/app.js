@@ -4,6 +4,10 @@
 var totalHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 // seattle
 
+let image = document.createElement('img');
+document.body.appendChild(image);
+image.setAttribute('src','img/salmon.png');
+
 const seatle = {
     minCust: 23,
     maxCust: 65,
@@ -13,7 +17,10 @@ const seatle = {
 
     display: function () {
         let total = 0;
-        const container = document.getElementById('container');
+        
+        let container = document.createElement('div');
+        document.body.appendChild(container);
+
         let h1element = document.createElement('h1');
         container.appendChild(h1element);
         h1element.textContent = 'seatle';
@@ -58,6 +65,65 @@ seatle.avgCust();
 
 seatle.display();
 
+// Tokyo
 
 
+
+const tokyo = {
+    minCust: 3,
+    maxCust: 24,
+    avgCookie: 1.2,
+    avgCustPerOur: [],
+
+
+    display: function () {
+        let total = 0;
+
+        
+        let div = document.createElement('div');
+        document.body.appendChild(div);
+
+        let h1element = document.createElement('h1');
+        div.appendChild(h1element);
+        h1element.textContent = 'tokyo';
+        let unorderList = document.createElement('ul');
+        div.appendChild(unorderList);
+        for (let j = 0; j < this.avgCustPerOur.length; j++) {
+            let list = document.createElement('li');
+            unorderList.appendChild(list);
+            total += this.avgCustPerOur[j]
+
+            
+            list.textContent = `${totalHours[j]}: ${this.avgCustPerOur[j]} cookies`;
+        }
+        let list = document.createElement('li');
+        unorderList.appendChild(list);
+        list.textContent = `Total: ${total} cookies`;
+       
+
+
+    }
+
+};
+
+tokyo.rand = function () {
+    return Math.floor(Math.random() * (tokyo.maxCust - tokyo.minCust) + tokyo.minCust);
+}
+
+tokyo.rand();
+// console.log(seatle.rand())
+
+
+tokyo.avgCust = function () {
+    for (let i = 0; i < totalHours.length; i++) {
+        tokyo.avgCustPerOur.push(Math.floor(tokyo.rand() * tokyo.avgCookie));
+
+    }
+}
+tokyo.avgCust();
+// console.log(seatle.avgCustPerOur);
+
+
+
+tokyo.display();
 
