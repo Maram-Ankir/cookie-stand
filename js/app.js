@@ -188,9 +188,9 @@ dubai.display();
 // Paris
 
 const paris = {
-    minCust: 11,
+    minCust: 20,
     maxCust: 38,
-    avgCookie: 3.7,
+    avgCookie: 2.3,
     avgCustPerOur: [],
 
 
