@@ -138,7 +138,7 @@ const dubai = {
     display: function () {
         let total = 0;
 
-        
+
         let div = document.createElement('div');
         document.body.appendChild(div);
 
@@ -181,7 +181,65 @@ dubai.avgCust = function () {
 }
 dubai.avgCust();
 // console.log(seatle.avgCustPerOur);
-
-
-
 dubai.display();
+
+
+
+// Paris
+
+const paris = {
+    minCust: 11,
+    maxCust: 38,
+    avgCookie: 3.7,
+    avgCustPerOur: [],
+
+
+    display: function () {
+        let total = 0;
+
+
+        let div = document.createElement('div');
+        document.body.appendChild(div);
+
+        let h1element = document.createElement('h1');
+        div.appendChild(h1element);
+        h1element.textContent = 'Paris';
+        let unorderList = document.createElement('ul');
+        div.appendChild(unorderList);
+        for (let j = 0; j < this.avgCustPerOur.length; j++) {
+            let list = document.createElement('li');
+            unorderList.appendChild(list);
+            total += this.avgCustPerOur[j]
+
+            
+            list.textContent = `${totalHours[j]}: ${this.avgCustPerOur[j]} cookies`;
+        }
+        let list = document.createElement('li');
+        unorderList.appendChild(list);
+        list.textContent = `Total: ${total} cookies`;
+       
+
+
+    }
+
+};
+
+paris.rand = function () {
+    return Math.floor(Math.random() * (paris.maxCust - paris.minCust) + paris.minCust);
+}
+
+paris.rand();
+// console.log(seatle.rand())
+
+
+paris.avgCust = function () {
+    for (let i = 0; i < totalHours.length; i++) {
+        paris.avgCustPerOur.push(Math.floor(paris.rand() * paris.avgCookie));
+
+    }
+}
+paris.avgCust();
+// console.log(seatle.avgCustPerOur);
+paris.display();
+
+
