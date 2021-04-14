@@ -14,6 +14,7 @@ function Location(nameStore, minHourCustomer, maxHourCustomer, averageCookies) {
     this.avgCustPerOur = [];
     newLocation.push(this);
     // this.render();
+    
 
 }
 
