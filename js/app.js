@@ -1,9 +1,9 @@
-// 'use strict';
+'use strict';
 
 // // global variables
 var newLocation = [];
 var totalHours = ['', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-var nameOfBranches =['Seatle','Tokyo','Dubai','Paris','Lima'];
+var nameOfBranches = ['Seatle', 'Tokyo', 'Dubai', 'Paris', 'Lima'];
 // construct object
 
 function Location(nameStore, minHourCustomer, maxHourCustomer, averageCookies) {
@@ -14,23 +14,24 @@ function Location(nameStore, minHourCustomer, maxHourCustomer, averageCookies) {
     this.avgCustPerOur = [];
     newLocation.push(this);
     // this.render();
-    
+
 
 }
 
 
 
- new Location('Seattle', 23, 65, 6.3);
- new Location('Tokyo', 3, 24, 1.2);
- new Location('Dubai', 11, 38, 3.7);
- new Location('Paris', 20, 38, 2.3);
- new Location('Lima', 2, 16, 4.6);
- function callFunction(){
-     for(let i=0;i<newLocation.length;i++){
-         newLocation[i].avgCust()
-         newLocation[i].createRow()
-     }
- }
+new Location('Seattle', 23, 65, 6.3);
+new Location('Tokyo', 3, 24, 1.2);
+new Location('Dubai', 11, 38, 3.7);
+new Location('Paris', 20, 38, 2.3);
+new Location('Lima', 2, 16, 4.6);
+function callFunction() {
+    console.log(newLocation)
+    for (let i = 0; i < newLocation.length; i++) {
+        newLocation[i].avgCust()
+        newLocation[i].createRow()
+    }
+}
 
 
 
@@ -70,7 +71,7 @@ function createTable() {
     headingRow.appendChild(thEl);
     thEl.textContent = 'Daily Location Total';
 }
-let sumColumn = []
+
 
 Location.prototype.createRow = function () {
     let tableEl = document.getElementById('table');
@@ -86,11 +87,6 @@ Location.prototype.createRow = function () {
         let tdEl = document.createElement('td');
         rowBody.appendChild(tdEl);
         tdEl.textContent = this.avgCustPerOur[i];
-        if(sumColumn[i]){
-        sumColumn[i]+=this.avgCustPerOur[i]
-        }else{
-        sumColumn[i] = this.avgCustPerOur[i]
-        }
         total += this.avgCustPerOur[i];
     }
     tdEl = document.createElement('td');
@@ -104,6 +100,7 @@ function tableFooter() {
 
     let tableEl = document.getElementById('table');
     let footer = document.createElement('tfoot');
+    footer.setAttribute('id','tablefooter')
     tableEl.appendChild(footer);
     let rowFooter = document.createElement('tr');
     footer.appendChild(rowFooter);
@@ -111,10 +108,13 @@ function tableFooter() {
     rowFooter.appendChild(tdEl);
     tdEl.textContent = 'Total';
     let total = 0;
-    for (let i = 0; i < totalHours.length-1; i++) {
+    for (let i = 0; i < totalHours.length - 1; i++) {
         let tdEl = document.createElement('td');
         rowFooter.appendChild(tdEl);
-        let sum = sumColumn[i];
+        let sum = 0;
+        for (let j = 0; j < newLocation.length; j++) {
+            sum += newLocation[j].avgCustPerOur[i];
+        }
         tdEl.textContent = sum;
         total += sum;
     }
@@ -127,6 +127,38 @@ createTable();
 callFunction();
 
 tableFooter();
+
+//get the form :
+
+const form = document.getElementById('cookiesform');
+form.addEventListener('submit', formShop);
+
+function formShop(event) {
+    event.preventDefault();
+    var nameStore = event.target.name.value;
+    nameStore = nameStore.toLowerCase();
+    // console.log('name =' + nameStore);
+    var minCust = event.target.minCust.value;
+    console.log(minCust);
+    var maxCust = event.target.maxCust.value;
+    var avgCookie = event.target.avgCookie.value;
+    // console.log(maxCust,avgCookie);
+    // console.log(event.target) ;
+    console.log('minCust>maxCust',minCust>maxCust)
+  if(parseInt(minCust)>parseInt(maxCust)){
+      alert('error : min is greater than max ');
+
+  }else{
+    let store = new Location(nameStore, minCust, maxCust, avgCookie);
+    store.avgCust();
+    store.createRow();
+
+    document.getElementById('tablefooter').remove();
+    // document.getElementById('table').deleteRow(newLocation.length+1);
+    tableFooter();
+}
+
+}
 
 
 
@@ -160,6 +192,4 @@ tableFooter();
 //       console.log(loc1);
 
 //     }
-
-
 
