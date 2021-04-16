@@ -1,6 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700');
 
 * {
   font-family: Open Sans;
@@ -64,16 +64,16 @@ width: 100%;
         text-align: center;
     }
 
-    input{
+    .input{
         height: 30px;
         width: 800px;
         border-radius: 9px;
     }
-    input:nth-child(3) {
+    .input:nth-child(3) {
         margin: 24px;
     }
 
-    textarea{
+   .form-control{
         width: 800px;
         height: 55px; 
         border-radius: 9px;
@@ -190,8 +190,69 @@ width: 307px;
 	font-weight: normal;
     margin-top: 20px;
  }
+#container{
+    margin-left: 190px;
+}
+ #table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+   
+  }
+  
+  #table td, #table th {
+    border: 1px solid  #895454;
+    padding: 8px;
+  
+  }
+  
+  #table tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #table tr:hover {background-color: #ddd;}
+  
+  #table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #ddbbbb;
+    color: white;
+  }
 
+ #cookiesform{
+    padding-top: 77px;
+    margin-bottom: 46px;
+      text-align: center;
+      margin-top: 30pxs;
+      border: #895454;
+      display: inline-block;
+      margin-top: 46px;
+    top: 92px;
+    position: absolute;
+  }
+  #name,#minCust,#maxCust,#avgCookie{
+    border-radius: 20px;
+    margin-bottom: 13px;
+    height: 50px;
+    font-style: italic;
 
-
-
-
+  }
+  #avgCookie{
+    margin-left: 17px;
+  }
+  label{
+    font-style: italic;
+    font-weight: bold;  
+  }
+#submit{
+    height: 42px;
+    width: 197px;
+    border-radius: 10px;
+    background-color: #ddbbbb;
+    font-weight: bold;
+    font-style: italic;
+}
+.comming-soon{
+    padding-left: 257px;
+}
